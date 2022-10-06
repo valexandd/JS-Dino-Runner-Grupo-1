@@ -35,6 +35,7 @@ class Game:
         # Game loop: events - update - draw
         self.playing = True
         self.obstacle_manager.reset_obstacles()
+        self.score.reset_score()
         while self.playing:
             self.events()
             self.update()
@@ -75,17 +76,27 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
         if self.death_count == 0:
-            font = pygame.font.Font(FONT_STYLE, 30)
-            text_component = font.render("Press any key to start", True, (0,0,0))
+            font = pygame.font.Font(FONT_STYLE, 25)
+            text_component = font.render("Press any key to start", True, (0, 0, 0))
             text_rect = text_component.get_rect()
             text_rect.center = (half_screen_width, half_screen_height)
             self.screen.blit(text_component, text_rect)
         else:
-            #mostrar mensaje volver a jugar(tarea)
-            #mostrar num muertes actuales
-            #mostrar puntaje y reiniciarse
             #hacer que lineas 80-84 sea reusable
-            pass
+            font = pygame.font.Font(FONT_STYLE, 25)
+            text_component = font.render("Press any key to restart", True, (0, 0, 0))
+            text_rect = text_component.get_rect()
+            text_rect.center = (half_screen_width, half_screen_height)
+            self.screen.blit(text_component, text_rect)
+            your_score = font.render (f"Score: {self.score.score}", True, (0, 0, 0))
+            your_score_rect = your_score.get_rect()
+            your_score_rect.center = (half_screen_width, half_screen_height + 100)
+            self.screen.blit(your_score, your_score_rect)
+            show_death_count = font.render (f"Deaths: {self.death_count}", True, (0, 0, 0))
+            show_death_count_rect = show_death_count.get_rect()
+            show_death_count_rect.center = (half_screen_width, half_screen_height + 150)
+            self.screen.blit(show_death_count, show_death_count_rect)
+
         self.screen.blit(RUNNING[0], (half_screen_width - 30, half_screen_height - 140))
         pygame.display.update()
         self.handle_key_events_on_menu()
@@ -100,6 +111,6 @@ class Game:
     def on_death (self):
         self.playing = False
         self.death_count += 1
-        print("Morí")
-        print(f"Número muertes: {self.death_count}")
     
+    def message (self, msg):
+        pass
