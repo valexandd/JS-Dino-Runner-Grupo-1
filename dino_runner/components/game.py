@@ -17,7 +17,6 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
-
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.score = Score()
@@ -35,7 +34,7 @@ class Game:
         # Game loop: events - update - draw
         self.playing = True
         self.obstacle_manager.reset_obstacles()
-        self.score.reset_score() #tarea 3
+        self.score.reset_score()
         while self.playing:
             self.events()
             self.update()
@@ -77,28 +76,10 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
         if self.death_count == 0:
             self.message("Press any key to start", half_screen_width, half_screen_height)
-            #font = pygame.font.Font(FONT_STYLE, 25)
-            #text_component = font.render("Press any key to start", True, (0, 0, 0))
-            #text_rect = text_component.get_rect()
-            #text_rect.center = (half_screen_width, half_screen_height)
-            #self.screen.blit(text_component, text_rect)
-        else: #tarea 3
+        else: 
             self.message("Press any key to restart",half_screen_width, half_screen_height)
-            # font = pygame.font.Font(FONT_STYLE, 25)
-            # text_component = font.render("Press any key to restart", True, (0, 0, 0))
-            # text_rect = text_component.get_rect()
-            # text_rect.center = (half_screen_width, half_screen_height)
-            # self.screen.blit(text_component, text_rect)
             self.message(f"Score: {self.score.score}",half_screen_width, half_screen_height + 100)
-            # your_score = font.render (f"Score: {self.score.score}", True, (0, 0, 0))
-            # your_score_rect = your_score.get_rect()
-            # your_score_rect.center = (half_screen_width, half_screen_height + 100)
-            # self.screen.blit(your_score, your_score_rect)
             self.message(f"Deaths: {self.death_count}", half_screen_width, half_screen_height + 150)
-            # show_death_count = font.render (f"Deaths: {self.death_count}", True, (0, 0, 0))
-            # show_death_count_rect = show_death_count.get_rect()
-            # show_death_count_rect.center = (half_screen_width, half_screen_height + 150)
-            # self.screen.blit(show_death_count, show_death_count_rect)
 
         self.screen.blit(RUNNING[0], (half_screen_width - 30, half_screen_height - 140))
         pygame.display.update()
@@ -114,12 +95,12 @@ class Game:
     def on_death (self):
         self.playing = False
         self.death_count += 1
+        self.game_speed = 20
     
-    #tarea 3
-    def message (self, msg, screen_width, screen_height):
+    def message (self, msg, positon_x, position_y):
             font = pygame.font.Font(FONT_STYLE, 25)
             text_component = font.render(msg, True, (0, 0, 0))
             text_rect = text_component.get_rect()
-            text_rect.center = (screen_width, screen_height)
+            text_rect.center = (positon_x, position_y)
             self.screen.blit(text_component, text_rect)
         
