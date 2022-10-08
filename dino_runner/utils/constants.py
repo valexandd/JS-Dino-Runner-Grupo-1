@@ -22,7 +22,7 @@ RUNNING_SHIELD = [
 ]
 
 RUNNING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Hammer.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
 ]
 
@@ -73,3 +73,8 @@ DEFAULT_TYPE = "default"
 FONT_STYLE = "freesansbold.ttf"
 
 SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
+HEART_COUNT = 3
+SOUND = "dino_runner/assets/Other/Sonido_fondo.wav"
+JUMP_SOUND = "dino_runner/assets/Other/boing.wav"
+GAME_OVER_SOUND = "dino_runner/assets/Other/game_over.wav"
